@@ -1,9 +1,9 @@
 import React, { useState, useRef, useEffect } from 'react';
 import styles from "./FixedRange.module.css"
-import Range from "components/range/Range"
 import { rangeDefValues, rangeValues } from 'utility/types';
 import instance from 'utility/callsAPI';
 import Loader from 'components/loader/Loader';
+import RangeFixedValues from 'components/rangeFixedValues/RangeFixedValues';
 
 const FixedRange = () => {
     const [inputValues, setInputValues] = useState<rangeValues>({ min: 0, max: 50 });
@@ -13,7 +13,6 @@ const FixedRange = () => {
         //API TO GET DEFAULT VALUES 
         instance.get('/rangeValues.json')
             .then((response: any) => {
-                console.log("response:", response);
                 let rangeVal = response.data.values;
                 if (rangeVal?.length > 0) {
                     let min = rangeVal[0];
@@ -52,18 +51,14 @@ const FixedRange = () => {
 
     }
 
-    const updateMinValue = (percentage: number) => {
-        //CHANGE MIN INPUT VALUES AND TRIGGER FUNCTION TO CHECK IF VALUES ARE CORRECT
-        let newVal = ((defValues.valuesRange / 100) * percentage) + defValues.min;
-        newVal = Math.floor(newVal);
-        fixInputValues(newVal, "min");
+    const updateMinValue = (fixedVal: number) => {
+        //TRIGGER FUNCTION TO CHECK IF VALUES ARE CORRECT
+        fixInputValues(fixedVal, "min");
     }
 
-    const updateMaxValue = (percentage: number) => {
+    const updateMaxValue = (fixedVal: number) => {
         //CHANGE MAX INPUT VALUES AND TRIGGER FUNCTION TO CHECK IF VALUES ARE CORRECT
-        let newVal = ((defValues.valuesRange / 100) * percentage) + defValues.min;
-        newVal = Math.floor(newVal);
-        fixInputValues(newVal, "max");
+        fixInputValues(fixedVal, "max");
     }
 
     const fixInputValues = (val: number, type: string) => {
@@ -116,13 +111,14 @@ const FixedRange = () => {
                             {defValues.stepRange?.map(e => <option key={Math.random()} value={e} >{e}</option>)}
                         </select>
                         <div className={styles.containerRange}>
-                            <Range
+                            <RangeFixedValues
                                 minValue={defValues.min}
                                 maxValue={defValues.max}
                                 minValueInput={inputValues.min}
                                 maxValueInput={inputValues.max}
                                 updateMinValue={updateMinValue}
                                 updateMaxValue={updateMaxValue}
+                                stepRange={defValues.stepRange}
                             />
                         </div>
                         <select

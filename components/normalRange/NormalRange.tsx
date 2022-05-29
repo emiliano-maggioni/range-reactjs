@@ -40,9 +40,9 @@ const NormalRange = () => {
         setInputValues(newValues); 
 
         const checkValues = setTimeout(() => { 
-            if(type == "min" && newValues.min == minInputRef!.current!.value)
+            if(type == "min" && newValues.min == minInputRef?.current?.value)
                     fixInputValues(newValues.min, type);                  
-            else if(type == "max" && newValues.max == maxInputRef!.current!.value)
+            else if(type == "max" && newValues.max == maxInputRef?.current?.value)
                     fixInputValues(newValues.max, type);                
                 
         }, 1500); 
@@ -72,7 +72,7 @@ const NormalRange = () => {
                 if(val < defValues.min)
                     setInputValues({min:defValues.min,max:inputValues.max});
                 else if(val >= inputValues.max)
-                    setInputValues({min:inputValues.max,max:inputValues.max});
+                    setInputValues({min:inputValues.max-1,max:inputValues.max});
                 else
                     setInputValues({min:val,max:inputValues.max});
             }
@@ -86,7 +86,7 @@ const NormalRange = () => {
                 if(val > defValues.max)
                 setInputValues({min:inputValues.min,max:defValues.max});
                 else if(val <= inputValues.min)
-                    setInputValues({min:inputValues.min,max:inputValues.min});
+                    setInputValues({min:inputValues.min,max:inputValues.min+1});
                 else
                     setInputValues({min:inputValues.min,max:val});
             }
@@ -132,6 +132,7 @@ const NormalRange = () => {
                 min={defValues.min}
                 max={defValues.max}
                 step="1"
+                data-testid="inputMaxLimit"
             />€
 
         </div>

@@ -6,6 +6,7 @@ export type rangeProps = {
   maxValueInput: number;
   updateMinValue:any;
   updateMaxValue:any;
+  stepRange?:number[];
 };
 
  

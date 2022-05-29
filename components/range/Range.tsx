@@ -35,16 +35,7 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
     }, [minValue,maxValue]);
 
 
-    const dragStart = (event: React.DragEvent<HTMLDivElement>,markerId:number) => {
-         console.log("2) event :", event);
-        console.log("1) clientX:", event.clientX);
-       // firstMarker.current.classList.add('markerHover');
-        firstMarker.current.style.cursor = 'grab';
-    }
-
     const dragEnd = (event: React.DragEvent<HTMLDivElement>,markerId:number) => {
-        // console.log("coords.barLeft:", coords!.barLeft);
-        // console.log("2) clientX :", event.clientX);
 
         let newPos = event.clientX - coords!.barLeft;
         if(newPos >= maxRightPos)
@@ -56,7 +47,6 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
             if(newPos >= marker2Pos)
                 newPos = marker2Pos-markerSize; 
             let percentage = getRangeValue(newPos);
-            firstMarker!.current!.classList!.remove('markerHover');
             updateMinValue(percentage);
             setMarker1Pos(newPos);
         }  
@@ -64,7 +54,6 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
             if(newPos <= marker1Pos)
                 newPos = marker1Pos+markerSize; 
             let percentage = getRangeValue(newPos);
-            secondMarker!.current!.classList!.remove('markerHover');
             updateMaxValue(percentage);
             setMarker2Pos(newPos);
         }  
@@ -94,7 +83,6 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
             <div 
                 draggable="true"
                 ref={firstMarker}
-                onDragStart={(e) => dragStart(e,1)} 
                 onDragEnd={(e) => dragEnd(e,1)} 
                 className={styles.firstMarker}
                 style={{ left: marker1Pos + 'px' }}
@@ -102,7 +90,6 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
             <div 
                 draggable="true"
                 ref={secondMarker}
-                onDragStart={(e) => dragStart(e,2)} 
                 onDragEnd={(e) => dragEnd(e,2)} 
                 className={styles.secondMarker}
                 style={{ left: marker2Pos + 'px' }}
