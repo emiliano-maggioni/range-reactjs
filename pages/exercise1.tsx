@@ -1,15 +1,15 @@
 import styles from '../styles/Exercise1.module.css'
-import Range from "components/range/Range";
+import NormalRange from "components/normalRange/NormalRange"
 
-const NormalRange = () => {
+const Exercise1Page = () => {
   return (
     <div className={styles.container}>
         <main className={styles.main}>
           <h1 className={styles.title}>
-          Normal Range
+            Normal Range
           </h1>    
            <div className={styles.rangeContainer}>
-            <Range />
+            <NormalRange />
            </div>   
 
       </main>
@@ -17,5 +17,5 @@ const NormalRange = () => {
   )
 }
 
-export default NormalRange
+export default Exercise1Page
  

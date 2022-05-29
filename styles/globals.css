@@ -14,3 +14,12 @@ a {
 * {
   box-sizing: border-box;
 }
+
+body div.markerHover, body div.markerHover:hover {
+  background-color:lime;
+  height: 35px;
+  width: 35px;
+  border-radius:35px;
+  cursor: grabbing;
+
+}
