@@ -1,7 +1,7 @@
 import styles from '../styles/Exercise2.module.css'
-import Range from "components/range/Range";
+import FixedRange from 'components/fixedRange/FixedRange';
 
-const FixedValuesRange = () => {
+const Exercise2Page = () => {
   return (
     <div className={styles.container}>
         <main className={styles.main}>
@@ -9,7 +9,7 @@ const FixedValuesRange = () => {
           Fixed values range
           </h1>    
            <div className={styles.rangeContainer}>
-            <Range />
+            <FixedRange />
            </div>   
 
       </main>
@@ -17,5 +17,5 @@ const FixedValuesRange = () => {
   )
 }
 
-export default FixedValuesRange
+export default Exercise2Page;
  

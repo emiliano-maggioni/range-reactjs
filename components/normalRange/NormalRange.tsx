@@ -4,7 +4,6 @@ import Range from "components/range/Range"
 import { rangeDefValues, rangeValues } from 'utility/types';
 import instance from 'utility/callsAPI';
 
-
 const NormalRange = () => {
     const minInputRef:any = useRef();
     const maxInputRef:any = useRef();
@@ -15,7 +14,6 @@ const NormalRange = () => {
         //API TO GET DEFAULT VALUES 
         instance.get('/limits.json')
         .then((response: any) => {
-            console.log("------- responses:",response);
             let dati = response.data
             let min = dati.min;
             let max = dati.max;
@@ -55,7 +53,6 @@ const NormalRange = () => {
 
     const updateMinValue = (percentage:number) => {
         //CHANGE MIN INPUT VALUES AND TRIGGER FUNCTION TO CHECK IF VALUES ARE CORRECT
-        console.log("updateMinValue:",percentage);  
         let newVal = ((defValues.valuesRange / 100) * percentage) + defValues.min;
         newVal = Math.floor(newVal);
         fixInputValues(newVal, "min"); 
@@ -103,23 +100,28 @@ const NormalRange = () => {
     }
     
     return (
-        <div className={styles.container} >
+        <div className={styles.container} style={{cursor:"default"}}  onDragOver={(event:any) =>    {
+            event.preventDefault();
+        }   }  >
             <input type="number"
                 value={inputValues.min}
                 ref={minInputRef}
                 onChange={(e:any) => changeInputValues(e.target.value,'min')}
                 className={styles.input} 
                 placeholder={`Min value ${defValues.min}`}
+                min={defValues.min}
+                max={defValues.max}
+                step="1"
             />€
             <div className={styles.containerRange}>
-            <Range 
-                minValue={defValues.min} 
-                maxValue={defValues.max} 
-                minValueInput={inputValues.min} 
-                maxValueInput={inputValues.max} 
-                updateMinValue={updateMinValue} 
-                updateMaxValue={updateMaxValue}
-            />
+                <Range 
+                    minValue={defValues.min} 
+                    maxValue={defValues.max} 
+                    minValueInput={inputValues.min} 
+                    maxValueInput={inputValues.max} 
+                    updateMinValue={updateMinValue} 
+                    updateMaxValue={updateMaxValue}
+                />
             </div>
             <input type="number"
                 value={inputValues.max}
@@ -127,6 +129,9 @@ const NormalRange = () => {
                 onChange={(e:any) => changeInputValues(e.target.value,'max')}
                 className={styles.input} 
                 placeholder={`Max value ${defValues.max}`}
+                min={defValues.min}
+                max={defValues.max}
+                step="1"
             />€
 
         </div>

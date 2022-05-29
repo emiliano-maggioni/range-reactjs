@@ -15,7 +15,7 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
 
     useEffect(() => {
         if(coords){
-            //SETTING RANGE BAR COORDS
+            //UPDATING RANGE BAR COORDS
             let minPos = getPositionFromValue(minValueInput);
             let maxPos = getPositionFromValue(maxValueInput);
             setMarker1Pos(minPos);
@@ -24,9 +24,8 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
     }, [minValueInput,maxValueInput]);
 
     useEffect(() => {
-        //SETTING RANGE BAR COORDS
-        let bar:any = rangeBar!.current!.getBoundingClientRect();
-        //setCoords({barLeft:bar.left,barRight:bar.right,minPercentage:minPercentage,maxPercentage:maxPercentage});
+        //SETTING RANGE BAR COORDS FOR THE FIRST TIME
+        let bar = rangeBar!.current!.getBoundingClientRect();
         setCoords({barLeft:bar.left,barRight:bar.right});
         let minPos = getPositionFromValue(minValue);
         let maxPos = getPositionFromValue(maxValue);
@@ -34,32 +33,24 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
         setMarker2Pos(maxPos);
 
     }, [minValue,maxValue]);
-    
-
-
-
 
 
     const dragStart = (event: React.DragEvent<HTMLDivElement>,markerId:number) => {
-        //console.log("drag START:",event);
-        // console.log("firstMarker getBoundingClientRect:", firstMarker.current.getBoundingClientRect());
+         console.log("2) event :", event);
         console.log("1) clientX:", event.clientX);
        // firstMarker.current.classList.add('markerHover');
+        firstMarker.current.style.cursor = 'grab';
     }
 
     const dragEnd = (event: React.DragEvent<HTMLDivElement>,markerId:number) => {
-        console.log("coords.barLeft:", coords!.barLeft);
-        console.log("2) clientX :", event.clientX);
-        // rangeBar.current.style.cursor = 'grab';
+        // console.log("coords.barLeft:", coords!.barLeft);
+        // console.log("2) clientX :", event.clientX);
 
         let newPos = event.clientX - coords!.barLeft;
         if(newPos >= maxRightPos)
             newPos = maxRightPos; 
         if(newPos < 0)
-            newPos = 0; 
-
-        // let percentage = getRangeValue(newPos);
-        // console.log("newPos:",newPos+" - percentage:",percentage);
+            newPos = 0;             
 
         if(markerId == 1){
             if(newPos >= marker2Pos)
@@ -92,7 +83,6 @@ const Range = ({minValue, maxValue, minValueInput, maxValueInput, updateMinValue
         let percentage = (maxValue-minValue) / 100;
         percentage = (val - minValue) / percentage;
         let pos = (maxRightPos / 100) * percentage; 
-        console.log("pos:",pos);
         return pos;
     };
 

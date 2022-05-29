@@ -25,6 +25,7 @@ export type rangeDefValues = {
   min: number;
   max: number;
   valuesRange:number;
+  stepRange?:number[];
 } 
 
 
