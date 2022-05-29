@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    width:100%;
+}
+.containerRange {
+    display: flex;
+    align-items: center;
+    height: 50px;
+    overflow: hidden;
+}
+
+.input{
+    width: 180px;
+    margin-right: 6px;
+    border: 1px solid #ccc;
+    padding: 7px;
+}
