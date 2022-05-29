@@ -9,8 +9,8 @@
     "lint": "next lint",
     "test": "jest --watch"
   },
-  
   "dependencies": {
+    "@babel/preset-react": "^7.17.12",
     "axios": "^0.27.2",
     "jest": "^28.1.0",
     "next": "12.1.6",
