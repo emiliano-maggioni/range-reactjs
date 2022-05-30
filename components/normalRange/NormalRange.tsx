@@ -103,7 +103,7 @@ const NormalRange = () => {
         <div className={styles.container} style={{cursor:"default"}}  onDragOver={(event:any) =>    {
             event.preventDefault();
         }   }  >
-            <input type="number"
+           <div  className={styles.inputContainer} > <input type="number"
                 value={inputValues.min}
                 ref={minInputRef}
                 onChange={(e:any) => changeInputValues(e.target.value,'min')}
@@ -112,7 +112,7 @@ const NormalRange = () => {
                 min={defValues.min}
                 max={defValues.max}
                 step="1"
-            />€
+            />€</div>
             <div className={styles.containerRange}>
                 <Range 
                     minValue={defValues.min} 
@@ -123,7 +123,7 @@ const NormalRange = () => {
                     updateMaxValue={updateMaxValue}
                 />
             </div>
-            <input type="number"
+            <div  className={styles.inputContainer} > <input type="number"
                 value={inputValues.max}
                 ref={maxInputRef}
                 onChange={(e:any) => changeInputValues(e.target.value,'max')}
@@ -133,7 +133,7 @@ const NormalRange = () => {
                 max={defValues.max}
                 step="1"
                 data-testid="inputMaxLimit"
-            />€
+            />€</div>
 
         </div>
     );
