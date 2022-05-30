@@ -102,37 +102,37 @@ const FixedRange = () => {
             {(defValues!.stepRange!.length > 0) ? (
                 <>
 
-                        <select
-                            name="minval"
-                            onChange={(e: any) => changeInputValues(e.target.value, 'min')}
-                            className={styles.input}
-                            value={inputValues.min}
-                        >
-                            {defValues.stepRange?.map(e => <option key={Math.random()} value={e} >{e}</option>)}
-                        </select>
-                        <div className={styles.containerRange}>
-                            <RangeFixedValues
-                                minValue={defValues.min}
-                                maxValue={defValues.max}
-                                minValueInput={inputValues.min}
-                                maxValueInput={inputValues.max}
-                                updateMinValue={updateMinValue}
-                                updateMaxValue={updateMaxValue}
-                                stepRange={defValues.stepRange}
-                            />
-                        </div>
-                        <select
-                            name="maxval"
-                            onChange={(e: any) => changeInputValues(e.target.value, 'max')}
-                            className={styles.input}
-                            value={inputValues.max}
-                        >
-                            {defValues.stepRange?.map(e => <option key={Math.random()} value={e} >{e}</option>)}
-                        </select>
-            </>
-              ) : (
+                    <div className={styles.inputContainer} ><select
+                        name="minval"
+                        onChange={(e: any) => changeInputValues(e.target.value, 'min')}
+                        className={styles.input}
+                        value={inputValues.min}
+                    >
+                        {defValues.stepRange?.map(e => <option key={Math.random()} value={e} >{e}</option>)}
+                    </select></div>
+                    <div className={styles.containerRange}>
+                        <RangeFixedValues
+                            minValue={defValues.min}
+                            maxValue={defValues.max}
+                            minValueInput={inputValues.min}
+                            maxValueInput={inputValues.max}
+                            updateMinValue={updateMinValue}
+                            updateMaxValue={updateMaxValue}
+                            stepRange={defValues.stepRange}
+                        />
+                    </div>
+                    <div className={styles.inputContainer} ><select
+                        name="maxval"
+                        onChange={(e: any) => changeInputValues(e.target.value, 'max')}
+                        className={styles.input}
+                        value={inputValues.max}
+                    >
+                        {defValues.stepRange?.map(e => <option key={Math.random()} value={e} >{e}</option>)}
+                    </select></div>
+                </>
+            ) : (
                 <Loader />
-              )}
+            )}
 
         </div>
     );

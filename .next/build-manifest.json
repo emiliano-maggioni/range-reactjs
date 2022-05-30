@@ -34,6 +34,11 @@
       "static/chunks/webpack.js",
       "static/chunks/main.js",
       "static/chunks/pages/exercise1.js"
+    ],
+    "/exercise2": [
+      "static/chunks/webpack.js",
+      "static/chunks/main.js",
+      "static/chunks/pages/exercise2.js"
     ]
   },
   "ampFirstPages": []
